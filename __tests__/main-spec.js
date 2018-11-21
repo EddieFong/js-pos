@@ -79,3 +79,33 @@ it ("printReceipt", () => {
 
 	expect(printReceipt.printReceipt(input,printReceipt.loadPromotions())).toEqual(expected);
 });
+
+
+	it('should print text', () => {
+  
+	  const tags = [
+		'ITEM000001',
+		'ITEM000001',
+		'ITEM000001',
+		'ITEM000001',
+		'ITEM000001',
+		'ITEM000003-2.5',
+		'ITEM000005',
+		'ITEM000005-2',
+	  ];
+  
+	  spyOn(console, 'log');
+  
+	  console.log(printReceipt.printReceipt(tags,printReceipt.loadPromotions()));
+  
+	  const expectText = '***<store earning no money>Receipt ***\n' +
+  'Name: 雪碧, Quantity: 5 瓶, Unit price: 3.00 (yuan), Subtotal: 12.00 (yuan)\n' +
+  'Name: 荔枝, Quantity: 2.5 斤, Unit price: 15.00 (yuan), Subtotal: 37.50 (yuan)\n' +
+  'Name: 方便面, Quantity: 3 袋, Unit price: 4.50 (yuan), Subtotal: 9.00 (yuan)\n' +
+  '----------------------\n' +
+  'Total: 58.50 (yuan)\n' +
+  'Saving: 7.50 (yuan)\n' +
+  '**********************\n';
+  
+	  expect(console.log).toHaveBeenCalledWith(expectText);
+	});
