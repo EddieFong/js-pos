@@ -83,8 +83,20 @@ function constItemDict(itemList, allItemList){
 }
 
 function calProm(consolidatedItemDict, promList){
-	let consolidatedItemWithPromDict = {}
-
+	let consolidatedItemWithPromDict = []
+	console.log(promList)
+	consolidatedItemDict.forEach((item) => {
+		console.log(item.barcode)
+		let newItem = item
+		if (promList[0].barcodes
+				.includes(item.barcode)){
+					newItem.subTotal = newItem.price * (newItem.count - parseInt(newItem.count / 3))
+		} else {
+			newItem.subTotal = newItem.price * newItem.count
+		}
+		consolidatedItemWithPromDict.push(newItem)
+	})
+	
 	return consolidatedItemWithPromDict
 }
 

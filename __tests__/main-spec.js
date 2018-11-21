@@ -1,4 +1,3 @@
-const createMultiplicationTableByRange = require("../main");
 const printReceipt = require("../main");
 
 it ("constItemDict", () => {
@@ -38,4 +37,19 @@ it ("constItemDict", () => {
 	  ];
 	expect(printReceipt.constItemDict(input,printReceipt.loadAllItems())).toEqual(expected);
 });
+	it ("constItemDict", () => {
+
+	let input = [
+		{"barcode": "ITEM000001", "count": 5, "name": "雪碧", "price": 3, "unit": "瓶"},
+		{"barcode": "ITEM000003", "count": 2, "name": "荔枝", "price": 15, "unit": "斤"},
+		{"barcode": "ITEM000005", "count": 3, "name": "方便面", "price": 4.5, "unit": "袋"}
+	]
+
+	let expected = [
+		{"barcode": "ITEM000001", "count": 5, "name": "雪碧", "price": 3, "unit": "瓶", "subTotal": 12},
+		{"barcode": "ITEM000003", "count": 2, "name": "荔枝", "price": 15, "unit": "斤", "subTotal": 30},
+		{"barcode": "ITEM000005", "count": 3, "name": "方便面", "price": 4.5, "unit": "袋", "subTotal": 9}
+	]
+
+	expect(printReceipt.calProm(input,printReceipt.loadPromotions())).toEqual(expected);
 });
