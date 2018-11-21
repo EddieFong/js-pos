@@ -69,7 +69,7 @@ function constItemDict(itemList, allItemList){
 		let matchedItem = itemList.filter((x)=>((x.substring(0, 10)) === element));
 		let count = 0
 		matchedItem.forEach((item) => {
-			count += (item.includes("-")) ? parseInt(item.split("-")[1]) : 1
+			count += (item.includes("-")) ? parseFloat(item.split("-")[1]) : 1
 		})
 		newItem.count = count;
 		newItem.barcode = allItemList.filter((x) => x.barcode.substring(0, 10) === element)[0].barcode
