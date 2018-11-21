@@ -55,7 +55,29 @@ function loadPromotions() {
 }
 
 function constItemDict(itemList, allItemList){
-	let consolidatedItemDict = {}
+
+	let onlyUnique = function (value, index, self) { 
+		return self.indexOf(value) === index;
+	}
+
+	let consolidatedItemDict = []
+	let uniqueItemList = itemList.map((x) => x.split("-")[0]).filter(onlyUnique);
+
+	uniqueItemList.forEach(element => {
+		let newItem = {}
+		
+		let matchedItem = itemList.filter((x)=>((x.substring(0, 10)) === element));
+		let count = 0
+		matchedItem.forEach((item) => {
+			count += (item.includes("-")) ? parseInt(item.split("-")[1]) : 1
+		})
+		newItem.count = count;
+		newItem.barcode = allItemList.filter((x) => x.barcode.substring(0, 10) === element)[0].barcode
+		newItem.name = allItemList.filter((x) => x.barcode.substring(0, 10) === element)[0].name
+		newItem.unit = allItemList.filter((x) => x.barcode.substring(0, 10) === element)[0].unit
+		newItem.price = allItemList.filter((x) => x.barcode.substring(0, 10) === element)[0].price
+		consolidatedItemDict.push(newItem)
+	});
 
 	return consolidatedItemDict;
 }
@@ -93,4 +115,9 @@ let itemList = [
   ];
 console.log(printReceipt(itemList));
 
-module.exports = printReceipt;
+module.exports = {
+	constItemDict,
+	loadAllItems,
+	calProm,
+	loadPromotions
+};
