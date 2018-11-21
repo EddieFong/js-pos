@@ -1,0 +1,22 @@
+{
+  "name": "js-pos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EddieFong/js-pos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EddieFong/js-pos/issues"
+  },
+  "homepage": "https://github.com/EddieFong/js-pos#readme",
+  "dependencies": {
+    "jest": "^23.6.0"
+  }
+}
