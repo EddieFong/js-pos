@@ -53,3 +53,29 @@ it ("constItemDict", () => {
 
 	expect(printReceipt.calProm(input,printReceipt.loadPromotions())).toEqual(expected);
 });
+
+it ("printReceipt", () => {
+
+	let input = [
+		'ITEM000001',
+		'ITEM000001',
+		'ITEM000001',
+		'ITEM000001',
+		'ITEM000001',
+		'ITEM000003-2',
+		'ITEM000005',
+		'ITEM000005',
+		'ITEM000005'
+	]
+
+	let expected = "***<store earning no money>Receipt ***\n" 
+		+ "Name: 雪碧, Quantity: 5 瓶, Unit price: 3.00 (yuan), Subtotal: 12.00 (yuan)\n"
+		+ "Name: 荔枝, Quantity: 2 斤, Unit price: 15.00 (yuan), Subtotal: 30.00 (yuan)\n"
+		+ "Name: 方便面, Quantity: 3 袋, Unit price: 4.50 (yuan), Subtotal: 9.00 (yuan)\n"
+		+ "----------------------\n"
+		+ "Total: 51.00 (yuan)\n"
+		+ "Saving: 7.50 (yuan)\n"
+		+ "**********************\n"
+
+	expect(printReceipt.printReceipt(input,printReceipt.loadPromotions())).toEqual(expected);
+});

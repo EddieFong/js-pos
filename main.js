@@ -84,7 +84,7 @@ function constItemDict(itemList, allItemList){
 
 function calProm(consolidatedItemDict, promList){
 	let consolidatedItemWithPromDict = []
-	console.log(promList)
+	
 	consolidatedItemDict.forEach((item) => {
 		console.log(item.barcode)
 		let newItem = item
@@ -100,14 +100,24 @@ function calProm(consolidatedItemDict, promList){
 	return consolidatedItemWithPromDict
 }
 
-function calculate (consolidatedItemWithPromDict){
-
-}
 
 function printReceipt (itemList) {
 
 	let consolidatedItemWithPromDict = calProm(constItemDict(itemList, loadAllItems()), loadPromotions())
-	let result = calculate(consolidatedItemWithPromDict)
+	let result = "***<store earning no money>Receipt ***\n"
+	consolidatedItemWithPromDict.forEach((item) => {
+		result += "Name: " + item.name +", Quantity: " + item.count + " " + item.unit + ", Unit price: " + item.price.toFixed(2) + " (yuan), Subtotal: " + item.subTotal.toFixed(2) + " (yuan)\n"
+	})
+	result += "----------------------\n"
+	let total = 0
+	let totalSaved = 0
+	consolidatedItemWithPromDict.forEach((item)=>{
+		total += item.subTotal
+		totalSaved += item.price * item.count - item.subTotal 
+	})
+	result += "Total: " + total.toFixed(2) + " (yuan)\n"
+	result += "Saving: " + totalSaved.toFixed(2) + " (yuan)\n"
+	result += "**********************\n"
 
 
 	return result;
@@ -125,11 +135,10 @@ let itemList = [
 	'ITEM000005',
 	'ITEM000005'
   ];
-console.log(printReceipt(itemList));
-
 module.exports = {
 	constItemDict,
 	loadAllItems,
 	calProm,
-	loadPromotions
+	loadPromotions,
+	printReceipt
 };
