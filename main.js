@@ -86,14 +86,9 @@ function calProm(consolidatedItemDict, promList){
 	let consolidatedItemWithPromDict = []
 	
 	consolidatedItemDict.forEach((item) => {
-		console.log(item.barcode)
 		let newItem = item
-		if (promList[0].barcodes
-				.includes(item.barcode)){
-					newItem.subTotal = newItem.price * (newItem.count - parseInt(newItem.count / 3))
-		} else {
-			newItem.subTotal = newItem.price * newItem.count
-		}
+		let buy2Get1Free = promList.find((x)=>x.type === 'BUY_TWO_GET_ONE_FREE')
+		newItem.subTotal = newItem.price * (newItem.count - ((buy2Get1Free.barcodes.includes(item.barcode)) ? parseInt(newItem.count / 3) : 0) )
 		consolidatedItemWithPromDict.push(newItem)
 	})
 	
