@@ -95,27 +95,25 @@ function calProm(consolidatedItemDict, promList){
 	return consolidatedItemWithPromDict
 }
 
-
 function printReceipt (itemList) {
 
 	let consolidatedItemWithPromDict = calProm(constItemDict(itemList, loadAllItems()), loadPromotions())
-	let result = "***<store earning no money>Receipt ***\n"
+	let result = `***<store earning no money>Receipt ***\n`
 	let total = 0
 	let totalSaved = 0
 	consolidatedItemWithPromDict.forEach((item) => {
-		result += "Name: " + item.name +", Quantity: " + item.count + " " + item.unit + ", Unit price: " + item.price.toFixed(2) + " (yuan), Subtotal: " + item.subTotal.toFixed(2) + " (yuan)\n"
+		result += `Name: ${item.name}, Quantity: ${item.count} ${item.unit}, Unit price: ${item.price.toFixed(2)} (yuan), Subtotal: ${item.subTotal.toFixed(2)} (yuan)\n`
 		total += item.subTotal
 		totalSaved += item.price * item.count - item.subTotal 
 	})
-	result += "----------------------\n"
-	result += "Total: " + total.toFixed(2) + " (yuan)\n"
-	result += "Saving: " + totalSaved.toFixed(2) + " (yuan)\n"
-	result += "**********************\n"
+	result += `----------------------\n`
+	result += `Total: ${total.toFixed(2)} (yuan)\n`
+	result += `Saving: ${totalSaved.toFixed(2)} (yuan)\n`
+	result += `**********************\n`
 
 
 	return result;
 }
-
 
 let itemList = [
 	'ITEM000001',
