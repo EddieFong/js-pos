@@ -111,21 +111,9 @@ function printReceipt (itemList) {
 	result += `Saving: ${totalSaved.toFixed(2)} (yuan)\n`
 	result += `**********************\n`
 
-
 	return result;
 }
 
-let itemList = [
-	'ITEM000001',
-	'ITEM000001',
-	'ITEM000001',
-	'ITEM000001',
-	'ITEM000001',
-	'ITEM000003-2',
-	'ITEM000005',
-	'ITEM000005',
-	'ITEM000005'
-  ];
 module.exports = {
 	constItemDict,
 	loadAllItems,
