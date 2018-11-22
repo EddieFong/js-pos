@@ -72,10 +72,10 @@ function constItemDict(itemList, allItemList){
 			count += (item.includes("-")) ? parseFloat(item.split("-")[1]) : 1
 		})
 		newItem.count = count;
-		newItem.barcode = allItemList.filter((x) => x.barcode.substring(0, 10) === element)[0].barcode
-		newItem.name = allItemList.filter((x) => x.barcode.substring(0, 10) === element)[0].name
-		newItem.unit = allItemList.filter((x) => x.barcode.substring(0, 10) === element)[0].unit
-		newItem.price = allItemList.filter((x) => x.barcode.substring(0, 10) === element)[0].price
+		newItem.barcode = allItemList.find((x) => x.barcode.substring(0, 10) === element).barcode
+		newItem.name = allItemList.find((x) => x.barcode.substring(0, 10) === element).name
+		newItem.unit = allItemList.find((x) => x.barcode.substring(0, 10) === element).unit
+		newItem.price = allItemList.find((x) => x.barcode.substring(0, 10) === element).price
 		consolidatedItemDict.push(newItem)
 	});
 
